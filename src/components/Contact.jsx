@@ -55,7 +55,7 @@ export default function Contact(props) {
 
 
                         <div className="flex flex-nowrap items-center gap-3">
-                            <button onClick={handleSubmit} type='submit' className='py-2 px-5 bg-cyan-500 text-white font-semibold text-sm rounded-md'>
+                            <button type='submit' className='py-2 px-5 bg-cyan-500 text-white font-semibold text-sm rounded-md'>
                                 {loading ? "Sending" : "Send"}
                             </button>
 
