@@ -1,0 +1,11 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+html{
+    scroll-behavior: smooth;
+}
+#home,#about,#skills,#projects{
+    padding-top: 80px;
+    margin-top: -80px;
+}
