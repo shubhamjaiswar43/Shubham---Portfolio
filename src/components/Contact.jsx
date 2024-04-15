@@ -19,8 +19,10 @@ export default function Contact(props) {
             body: JSON.stringify(data)
         })
         res = await res.json();
-        if (res.success)
+        if (res.success) {
             toast('Message Sent');
+            setData({ 'name': '', 'email': '', 'message': '' })
+        }
         else
             toast('Internal Server Error, Please Try Again Later!');
         setLoading(false);
