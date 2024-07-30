@@ -4,28 +4,25 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export default function Contact(props) {
+export default function Contact() {
     const [data, setData] = useState({ 'name': '', 'email': '', 'message': '' })
     const [loading, setLoading] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const hostname = import.meta.env.VITE_BACKEND_HOSTNAME;
-        let res = await fetch(`${hostname}/sendmail`, {
+        var formData = new FormData(e.target);
+        fetch(e.target.action, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-        res = await res.json();
-        if (res.success) {
+            body: formData
+        }).then(response => response.json()).then(data => {
             toast('Message Sent');
             setData({ 'name': '', 'email': '', 'message': '' })
-        }
-        else
-            toast('Internal Server Error, Please Try Again Later!');
-        setLoading(false);
+            setLoading(false);
+        }).catch(error => {
+            toast('Something Went Wrong Please Try Again Later!!!');
+            console.error('Error:', error);
+            setLoading(false);
+        });
     }
 
     return (
@@ -42,9 +39,9 @@ export default function Contact(props) {
                         <GoDotFill className='text-cyan-400 text-lg' />
                         <h1 className='text-lg font-semibold capitalize'>Get In <span className=''>Touch</span></h1>
                     </div>
-                    <form action="" className='p-5' onSubmit={handleSubmit}>
-
-
+                    <form id='contact-form' className='p-5' action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit}>
+                        <input type="hidden" name="apikey" value={import.meta.env.VITE_WEB3FORM_ACCESSTOKEN} />
+                        <input type="hidden" name="redirect" value=""></input>
 
                         <input value={data.name} required name="name" onChange={(e) => { setData({ ...data, [e.target.name]: e.target.value }) }} type="text" placeholder='Full Name' className='border-b-2 border-black bg-transparent focus:outline-none ps-2 pb-3 mb-7 w-full font-semibold text-sm' />
 
@@ -52,7 +49,7 @@ export default function Contact(props) {
                         <input value={data.email} required name='email' onChange={(e) => { setData({ ...data, [e.target.name]: e.target.value }) }} type="email" placeholder='@Email' className='border-b-2 border-black bg-transparent focus:outline-none ps-2 pb-3 mb-7 w-full font-semibold text-sm' />
 
 
-                        <textarea value={data.message} name='message' onChange={(e) => { setData({ ...data, [e.target.name]: e.target.value }) }} placeholder='Leave a message here...' className='h-[130px] border-b-2 border-black bg-transparent focus:outline-none ps-2 pb-3 mb-5 w-full font-semibold text-sm'>
+                        <textarea value={data.message} required name='message' onChange={(e) => { setData({ ...data, [e.target.name]: e.target.value }) }} placeholder='Leave a message here...' className='h-[130px] border-b-2 border-black bg-transparent focus:outline-none ps-2 pb-3 mb-5 w-full font-semibold text-sm'>
                         </textarea>
 
 
