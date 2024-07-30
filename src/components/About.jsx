@@ -29,7 +29,7 @@ export default function About() {
                         <div className="flex flex-wrap items-center gap-3">
                             <a href='https://linkedin.com/in/shubhamjaiswar/' target='_blank' className='cursor-pointer  px-8 py-3 text-white bg-gradient-to-r from-cyan-500 to-blue-500 font-semibold text-sm rounded-md flex flex-nowrap items-center gap-1' >Linkedin <FaLinkedin className='text-lg' /></a>
                             <a href="https://github.com/shubhamjaiswar43" target="_blank" className='cursor-pointer  px-8 py-3 text-white bg-gradient-to-r from-orange-400 to-orange-600 font-semibold text-sm rounded-md flex flex-nowrap items-center gap-1' >Github <FaGithub className='text-lg' /></a>
-                            <a href="mailto:shubhamjaiswar08@gmail.com?subject=Your%20Subject&body=Your%20Message" target="_blank" className='cursor-pointer  px-8 py-3 text-white bg-gradient-to-r from-red-500 to-pink-500 font-semibold text-sm rounded-md flex flex-nowrap items-center gap-1' >Email <MdMarkEmailUnread className='text-lg' /></a>
+                            <a id='emailButton' href="mailto:shubhamjaiswar08@gmail.com?subject=Message%20From%20Portfolio" target="_blank" className='cursor-pointer  px-8 py-3 text-white bg-gradient-to-r from-red-500 to-pink-500 font-semibold text-sm rounded-md flex flex-nowrap items-center gap-1' >Email <MdMarkEmailUnread className='text-lg' /></a>
                         </div>
                     </div>
                     <div className="border-[3px] border-slate-950 rounded-xl mx-5 sm:mx-10 md:m-10 min-h-[400px] sm:max-h-[500px] overflow-hidden relative">

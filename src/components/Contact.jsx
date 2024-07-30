@@ -9,20 +9,17 @@ export default function Contact() {
     const [loading, setLoading] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        var formData = new FormData(e.target);
-        fetch(e.target.action, {
-            method: 'POST',
-            body: formData
-        }).then(response => response.json()).then(data => {
-            toast('Message Sent');
-            setData({ 'name': '', 'email': '', 'message': '' })
-            setLoading(false);
-        }).catch(error => {
-            toast('Something Went Wrong Please Try Again Later!!!');
-            console.error('Error:', error);
-            setLoading(false);
-        });
+        toast('Currently Disabled. Please Email Me Instead.');
+        const emailButton = document.getElementById('emailButton');
+        if (emailButton) {
+            emailButton.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            emailButton.focus();
+            emailButton.style.boxShadow = '0 0 15px rgba(0, 123, 255, 0.8)';
+            emailButton.style.transition = 'box-shadow 0.5s ease';
+            setTimeout(() => {
+                emailButton.style.boxShadow = 'none';
+            }, 5000);
+        }
     }
 
     return (
@@ -39,10 +36,7 @@ export default function Contact() {
                         <GoDotFill className='text-cyan-400 text-lg' />
                         <h1 className='text-lg font-semibold capitalize'>Get In <span className=''>Touch</span></h1>
                     </div>
-                    <form id='contact-form' className='p-5' action="https://api.web3forms.com/submit" method="POST" onSubmit={handleSubmit}>
-                        <input type="hidden" name="apikey" value={import.meta.env.VITE_WEB3FORM_ACCESSTOKEN} />
-                        <input type="hidden" name="redirect" value=""></input>
-
+                    <form id='contact-form' className='p-5' onSubmit={handleSubmit}>
                         <input value={data.name} required name="name" onChange={(e) => { setData({ ...data, [e.target.name]: e.target.value }) }} type="text" placeholder='Full Name' className='border-b-2 border-black bg-transparent focus:outline-none ps-2 pb-3 mb-7 w-full font-semibold text-sm' />
 
 
